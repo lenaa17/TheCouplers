@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="thecouplers.css" />
+    <title>CR Thecouplers</title>
+  </head>
+  <body class="body">
+    <div class="navbar">
+      <ul>
+        <li><a href="#tc">The Couplers</a></li>
+        <li><a href="#fe">Feature Envy</a></li>
+        <li><a href="#ii">Inappropriate Intimacy</a></li>
+        <li><a href="#mc">Message Chain</a></li>
+        <li><a href="#mm">Middle Man</a></li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <div class="tc" id="tc">
+      <h1 class="whitecolor">The Couplers</h1>
+      <p >
+        The Couplers adalah salah satu kategori code smell yang terjadi ketika
+        kode memiliki kelas-kelas yang memiliki ketergantungan berlebihan pada
+        kelas lainnya. Hal ini membuat kode menjadi kurang fleksibel dan sulit
+        untuk dipahami. Ketergantungan berlebihan antar kelas dapat mengarah
+        pada masalah-masalah seperti, ketergantungan berlebihan antara
+        kelas-kelas dalam sistem sehingga meningkatkan risiko kesalahan dan
+        mengurangi kemudahan pemeliharaan. Kode menjadi sulit untuk dikembangkan
+        atau dimodifikasi.
+      </p>
+
+      <h3 class="whitecolor">Solusi</h3>
+      <p >
+        Solusi dari bad code smell ini penting untuk melakukan refaktorisasi
+        kode dengan memperbaiki desain sistem dengan memisahkan tanggung jawab
+        antar kelas secara lebih jelas. Refaktorisasi kode akan membuat kode
+        menjadi lebih fleksibel, mudah dipahami, dan mudah untuk dikembangkan
+        dan dipelihara.
+      </p>
+    </div>
+
+    <br />
+
+    <div class="fe" id="fe">
+      <h2 class="whitecolor">Feature Envy</h2>
+      <p >
+        Feature Envy adalah sebuah method dalam sebuah class terlalu sering
+        mengakses dan menggunakan data dari class lain, padahal seharusnya data
+        tersebut seharusnya menjadi milik dari class itu sendiri.
+      </p>
+      <h3 class="whitecolor">Cara Mengatasi?</h3>
+      <p >
+        Setiap class akan bertanggung jawab penuh atas data dan logikanya
+        sendiri, meningkatkan kohesi dan kejelasan dalam struktur kode.
+      </p>
+      <br />
+      <p class="bukancenter">Sebelum</p>
+      <img src="sebelum fe.png" alt="" />
+      <p>Alasan :</p>
+      <p>
+        Untuk mengurangi overhead yang tidak perlu dalam struktur kode,
+        meminimalkan kompleksitas dalam pemanggilan method, serta meningkatkan
+        kejelasan dan efisiensi dalam penggunaan kode.
+      </p>
+      <br />
+      <p class="bukancenter"">Sesudah</p>
+      <img src="Sesudah fe.png" alt="" />
+      <p>Solusi</p>
+      <p>
+        setiap class bertanggung jawab atas data dan logikanya sendiri,
+        meningkatkan kohesi dan kejelasan dalam struktur kode.
+      </p>
+    </div>
+
+    <br />
+
+    <div class="ii" id="ii">
+      <h2 class="whitecolor">Inappropriate Intimacy</h2>
+      <p >
+        Inappropriate intimacy merupakan salah satu jenis code smell yang
+        terjadi ketika sebuah kelas memiliki ketergantungan yang terlalu erat
+        terhadap detail implementasi dari kelas lain. Hal ini berarti kelas
+        tersebut memiliki pengetahuan yang mendalam tentang bagaimana kelas lain
+        diimplementasikan, termasuk akses langsung ke atribut atau metode kelas
+        tersebut.
+      </p>
+      <h3 class="whitecolor">Cara Mengatasi?</h3>
+      <p >
+        Solusi dari code smell ini dengan melakukan refaktorisasi kode dengan
+        encapsulation, menerapkan prinsip Dependency Inversion Principle (DIP).
+      </p>
+      <br />
+      <p class="bukancenter">Sebelum</p>
+      <img src="sebelum ii.png" alt="" />
+      <p>Alasan :</p>
+      <p>
+        Pada kelas Order terdapat Inappropirate Intimacy dengan kelas Customer
+        karena lansung mengakses artibut status dari objek Customer untuk
+        memeriksa statusnya dalam metode processOrder(). Hal ini melanggar
+        prinsip encapsulation karena Order seharusnya tidak perlu mengetahui
+        detail internal dari Customer.
+      </p>
+      <br />
+      <p class="bukancenter">Sesudah</p>
+      <img src="sesudah ii.png" alt="" />
+      <p>Solusi</p>
+      <p>
+        Diterapkan prinsip encapsulation pada kelas Customer dengan ditambahkan
+        metode isActive() untuk menyembunyikan detail implementasi dari status.
+        kemudian metode tersebut digunakan pada kelas Order untuk memeriksa
+        status pelanggan tanpa harus mengakses atribut langsung.
+      </p>
+    </div>
+
+    <br />
+
+    <div class="mc" id="mc">
+      <h2 class="whitecolor">Message Chain</h2>
+      <p >
+        Message chain adalah salah satu jenis code smell yang terjadi karena
+        terdapat pemanggilan metode atau fungsi secara berturut-turut pada objek
+        . Jadi dalam suatu objek memanggil suatu metode, dan metode tersebut
+        memanggil metode yang lain, dan terus berulang.
+      </p>
+      <h3 class="whitecolor">Cara Mengatasi?</h3>
+      <p >
+        solusi dari code smell ini adalah melakukan refaktor ke metode pemisah.
+        seperti objekA.metodeB().metodeC().metodeD(), pisahkan setiap
+        pemanggilan ke dalam metode terpisah seperti objekA.metodeB(),
+        objekA.metodeB().metodeC(),dst. Hal ini dilakukan agar lebih kode lebih
+        mudah dimengerti.
+      </p>
+      <br />
+      <p class="bukancenter">Sebelum</p>
+      <img src="sebelum mc.png" alt="" />
+      <p>Alasan :</p>
+      <p>
+        Message chain pada kode diatas dapat terlihat pada pemanggilan metode
+        getAddress(), getFullAddress(), dan pengecekan berikutnya, semuanya
+        dilakukan dalam satu metode.
+      </p>
+      <p class="bukancenter">Sesudah</p>
+      <img src="sesudah mc.png" alt="" />
+      <p>Solusi</p>
+      <p>
+        Kita refaktor kode diatas dengan memisahkan logika validasi, pemanggilan
+        metode, dan penanganan kasus-kasus khusus ke dalam metode-metode baru.
+        Ini membuat kode lebih mudah dipahami, mengurangi message chain, dan
+        meningkatkan keterbacaan serta pemeliharaan kode.
+      </p>
+    </div>
+
+    <br />
+
+    <div class="mm" id="mm">
+      <h2 class="whitecolor">Middle Man</h2>
+      <p>
+        Middle man merupakan sebuah bad code smell karena menyebabkan overhead
+        yang tidak perlu dalam struktur kode.
+      </p>
+      <h3 class="whitecolor">Cara Mengatasi?</h3>
+      <p >
+        identifikasi method-method yang hanya meneruskan pemanggilan tanpa
+        menambahkan nilai tambah, dan hapus mereka jika memungkinkan.
+      </p>
+      <br />
+      <p class="bukancenter"">Sebelum</p>
+      <img src="sebelum mm.png" alt="" />
+      <p>Alasan :</p>
+      <p>
+        untuk mengurangi overhead yang tidak perlu dalam struktur kode,
+        mengurangi kompleksitas yang tidak perlu dalam pemanggilan method, serta
+        meningkatkan efisiensi penggunaan sumber daya dengan menghapus perantara
+        yang hanya meneruskan pemanggilan tanpa memberikan nilai tambah yang
+        signifikan
+      </p>
+      <p class="bukancenter">Sesudah</p>
+      <img src="sesudah mm.png" alt="" />
+      <p>Solusi</p>
+      <p>
+        Dengan melakukan refaktoring seperti ini, kita menghilangkan overhead
+        yang tidak perlu dan membuat struktur kode menjadi lebih langsung dan
+        mudah dipahami.
+      </p>
+    </div>
+
+    <div class="anggotakelompok">
+        <ul>
+            <h4>Anggota Kelompok</h4>
+            <li>Ellen Guisania - 2602178262 </li>
+            <li>Karin Amalina Zata Amani - 2602177341</li>
+            <li>Odilia Elaine Karnadi - 2602174094</li>
+        </ul>
+    </div>
+  </body>
+</html>
